@@ -176,7 +176,7 @@ public class LundParticle {
 
     @Override
     public String toString() {
-        return String.format("%1$4d %2$4d %3$4d %4$4d %5$4d %6$4d %7$08f %8$08f %9$08f %10$08f %11$08f %12$08f %13$08f %14$08f \n",
+        return String.format("%1$d %2$4d %3$4d %4$4d %5$4d %6$4d %7$08f %8$08f %9$08f %10$08f %11$08f %12$08f %13$08f %14$08f \n",
                 index, charge, type, PID, parentIndex, daughterIndex, px, py, pz, vx, vy, vz, energy, mass);
     }    
     

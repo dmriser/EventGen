@@ -123,7 +123,7 @@ public class LundHeader {
 
     @Override
     public String toString() {
-        return String.format("%1$4d %2$4d %3$4d %4$8f %5$8f %6$8f %7$08f %8$08f %9$08f %10$08f \n",
+        return String.format("%1$d %2$4d %3$4d %4$8f %5$8f %6$8f %7$08f %8$08f %9$08f %10$08f \n",
                 numberOfParticles, numberOfTargetNucleons, numberOfTargetProtons, 
             beamPolarization, targetPolarization, x, y, w, qq, nu);
     }

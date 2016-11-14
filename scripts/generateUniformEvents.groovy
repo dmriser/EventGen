@@ -8,8 +8,8 @@ import org.jlab.groot.graphics.EmbeddedCanvas
 double beamEnergy = 5.498
 double thetaMin = 20.0
 double thetaMax = 50.0
-double finalEnergyMin = 1.0
-double finalEnergyMax = 3.0
+double finalEnergyMin = 0.1
+double finalEnergyMax = 4.8
 
 int numberOfEvents = 1000000
 UniformProcess uniform = new UniformProcess(beamEnergy, thetaMin, thetaMax, finalEnergyMin, finalEnergyMax)
@@ -24,10 +24,21 @@ generator.generate(numberOfEvents)
 //for (int i=0; i<50; i++)
 //    print generator.getEvent(i).toString()
 
-H1F px = generator.getHistogram("px")
-H1F py = generator.getHistogram("py")
-H1F energy = generator.getHistogram("energy")
-H2F pxpy = generator.getHistogram("px","py")
+H1F px = generator.getHistogram(11,"px",100,-2.0,2.0)
+H1F py = generator.getHistogram(11,"py",100,-2.0,2.0)
+H1F energy = generator.getHistogram(11,"energy",100,0.0,6.0)
+H2F pxpy = generator.getHistogram(11,"px","py",50,-2.0,2.0,50,-2.0,2.0)
+H2F xQQ = generator.getHistogram("x","qq",100,0.0,1.0,100,-0.1,5.0)
+H2F wQQ = generator.getHistogram("w","qq",100,0.0,3.5,100,-0.1,5.0)
+
+H1F[] pars = generator.getParameterHistograms(0)
+H1F xBjorken = generator.getHistogram("x",100,-0.5,1.5)
+
+pars[0].setTitleX("par0")
+pars[0].setFillColor(35)
+
+xBjorken.setTitleX("x")
+xBjorken.setFillColor(32)
 
 px.setTitleX("Px (GeV/c)")
 px.setFillColor(32)
@@ -42,19 +53,29 @@ JFrame frame = new JFrame("Title of the Frame")
 EmbeddedCanvas canvas = new EmbeddedCanvas()
 frame.setSize(1200,1000)
 
-canvas.divide(2,2)
+canvas.divide(3,3)
 canvas.cd(0)
-canvas.draw(px)
+canvas.draw(xBjorken)
 canvas.cd(1)
-canvas.draw(py)
+canvas.draw(px)
 canvas.cd(2)
-canvas.draw(energy)
+canvas.draw(py)
 canvas.cd(3)
+canvas.draw(energy)
+canvas.cd(4)
+canvas.draw(pars[0])
+canvas.cd(5)
+canvas.draw(pars[1])
+canvas.cd(6)
 canvas.draw(pxpy)
+canvas.cd(7)
+canvas.draw(xQQ)
+canvas.cd(8)
+canvas.draw(wQQ)
 
 frame.add(canvas)
 frame.setLocationRelativeTo(null)
 frame.setVisible(true)
 
 // Big file use care 
-//generator.saveEvents("uniformEvents.lund")
+// generator.saveEvents("uniformEvents.lund")
