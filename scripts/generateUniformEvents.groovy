@@ -5,13 +5,13 @@ import javax.swing.JFrame
 import org.jlab.groot.graphics.EmbeddedCanvas
 
 
-double beamEnergy = 5.498
-double thetaMin = 20.0
-double thetaMax = 50.0
-double finalEnergyMin = 0.1
-double finalEnergyMax = 4.8
+double beamEnergy = 11.0
+double thetaMin = 18.0
+double thetaMax = 60.0
+double finalEnergyMin = 1.2
+double finalEnergyMax = 10.8
 
-int numberOfEvents = 1000000
+int numberOfEvents = 100000
 UniformProcess uniform = new UniformProcess(beamEnergy, thetaMin, thetaMax, finalEnergyMin, finalEnergyMax)
 uniform.setValue(0.1)
 
@@ -24,12 +24,12 @@ generator.generate(numberOfEvents)
 //for (int i=0; i<50; i++)
 //    print generator.getEvent(i).toString()
 
-H1F px = generator.getHistogram(11,"px",100,-2.0,2.0)
-H1F py = generator.getHistogram(11,"py",100,-2.0,2.0)
-H1F energy = generator.getHistogram(11,"energy",100,0.0,6.0)
-H2F pxpy = generator.getHistogram(11,"px","py",50,-2.0,2.0,50,-2.0,2.0)
-H2F xQQ = generator.getHistogram("x","qq",100,0.0,1.0,100,-0.1,5.0)
-H2F wQQ = generator.getHistogram("w","qq",100,0.0,3.5,100,-0.1,5.0)
+H1F px = generator.getHistogram(11,"px",100,-5.0,5.0)
+H1F py = generator.getHistogram(11,"py",100,-5.0,5.0)
+H1F energy = generator.getHistogram(11,"energy",100,0.0,11.0)
+H2F pxpy = generator.getHistogram(11,"px","py",50,-5.0,5.0,50,-5.0,5.0)
+H2F xQQ = generator.getHistogram("x","qq",50,0.0,1.0,50,-0.1,5.0)
+H2F wQQ = generator.getHistogram("w","qq",50,0.0,3.5,50,-0.1,5.0)
 
 H1F[] pars = generator.getParameterHistograms(0)
 H1F xBjorken = generator.getHistogram("x",100,-0.5,1.5)

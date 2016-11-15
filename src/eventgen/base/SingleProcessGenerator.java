@@ -163,6 +163,10 @@ public class SingleProcessGenerator {
         return new LundEvent();
     }
 
+    public ArrayList<LundEvent> getEvents(){
+        return this.events; 
+    }
+    
     public void saveEvents(String filename) {
         try {
             PrintWriter out = new PrintWriter(filename, "UTF-8");
